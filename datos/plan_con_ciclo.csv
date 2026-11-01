@@ -1,0 +1,4 @@
+codigo,nombre,prerrequisitos
+A101,Materia A,C101
+B101,Materia B,A101
+C101,Materia C,B101
