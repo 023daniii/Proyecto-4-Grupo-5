@@ -39,3 +39,5 @@ Por ahora se mantiene la orientacion **del prerrequisito a la materia dependient
 - `datos/`: ejemplos para ejecutar y probar.
 
 El informe se prepara aparte. No se requiere base de datos ni interfaz web.
+
+La consola se limpia al elegir una opcion y al volver al menu. Despues de cada resultado, pulsa Enter para continuar. En Windows se usa `cls`; en otras terminales compatibles se usan secuencias de control.

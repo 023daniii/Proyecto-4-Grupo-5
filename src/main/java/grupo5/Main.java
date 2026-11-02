@@ -16,6 +16,7 @@ public final class Main {
         Scanner entrada = new Scanner(System.in, StandardCharsets.UTF_8);
         PlanEstudios plan = null;
         while (true) {
+            limpiarTerminal();
             System.out.println("""
                     Planificador academico - Grupo 5
                     1. Cargar CSV
@@ -27,6 +28,7 @@ public final class Main {
             System.out.print("Opcion: ");
             if (!entrada.hasNextLine()) return;
             String opcion = entrada.nextLine().trim();
+            limpiarTerminal();
             if (opcion.equals("0")) {
                 System.out.println("Hasta pronto.");
                 return;
@@ -39,8 +41,7 @@ public final class Main {
                     System.out.println("Materias cargadas: " + plan.materias().size());
                 } else if (Set.of("2", "3", "4", "5").contains(opcion)) {
                     if (plan == null) {
-                        System.out.println("Primero carga un CSV.");
-                        continue;
+                        throw new IllegalArgumentException("Primero carga un CSV.");
                     }
                     if (opcion.equals("5")) {
                         System.out.print("Codigos aprobados separados por ; (vacio si ninguno): ");
@@ -63,6 +64,29 @@ public final class Main {
             } catch (IOException | IllegalArgumentException e) {
                 System.out.println("Error: " + e.getMessage());
             }
+            System.out.print("Pulsa Enter para volver al menu...");
+            if (!entrada.hasNextLine()) return;
+            entrada.nextLine();
         }
     }
+
+    /** Usa cls en Windows y secuencias de control en terminales compatibles. */
+    private static void limpiarTerminal() {
+        if (System.getProperty("os.name").startsWith("Windows")) {
+            try {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } catch (IOException e) {
+                // La operacion del menu sigue disponible si no se puede limpiar.
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        } else {
+            String terminal = System.getenv("TERM");
+            if (terminal != null && !terminal.equals("dumb")) {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        }
+    }
+
 }
