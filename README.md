@@ -4,12 +4,29 @@ Proyecto academico de consola para cargar un plan de estudios desde CSV, modelar
 
 ## Uso
 
-Requiere JDK 21 y Maven 3.9.x. Desde la raiz del repositorio:
+Solo requiere JDK 21. Comprueba `java -version` y `javac -version`.
+Desde la raiz del repositorio, en CMD de Windows o una terminal de Linux:
 
 ```sh
-mvn clean test
-mvn compile exec:java
+javac --release 21 -encoding UTF-8 -d out @fuentes.txt
+java -cp out grupo5.Main
 ```
+
+Para compilar y ejecutar las 17 pruebas con Java:
+
+```sh
+javac --release 21 -encoding UTF-8 -cp out -d out @pruebas.txt
+java -cp out grupo5.Pruebas
+```
+
+Primero compila la aplicacion. El ejecutor muestra cada caso, cuenta aprobadas y
+fallidas y termina con error si falla una comprobacion. No requiere activar `-ea`.
+En PowerShell escribe los argumentos como `"@fuentes.txt"` y `"@pruebas.txt"`.
+
+`fuentes.txt` y `pruebas.txt` enumeran los archivos que compila javac. Si agregas
+una clase, incluye su ruta en la lista correspondiente. `out/` contiene archivos
+generados: puedes borrarla y volver a compilar. La antigua carpeta `target/`
+tambien se puede borrar; ya no se utiliza. No se necesita Maven ni JUnit.
 
 En el menu, selecciona `1` e introduce `datos/plan_valido.csv`. Usa `2` para comprobar si es un DAG, `3` o `4` para ver un orden de cursado y `5` para consultar materias disponibles. En la consulta escribe codigos separados por `;`, por ejemplo `MAT101;PRO101`, o deja la entrada vacia si no has aprobado ninguna. `0` sale del programa.
 

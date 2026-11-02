@@ -3,12 +3,11 @@ import grupo5.algoritmos.*;
 import grupo5.io.CargadorCSV;
 import java.nio.file.Path;
 import java.util.*;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static grupo5.Pruebas.*;
 
 class OrdenTopologicoDFSTest {
-    @Test void ordenaPlanConRamificaciones() throws Exception { verificar("datos/plan_valido.csv"); }
-    @Test void incluyeMateriasIndependientes() throws Exception { verificar("datos/plan_independiente.csv"); }
+    void ordenaPlanConRamificaciones() throws Exception { verificar("datos/plan_valido.csv"); }
+    void incluyeMateriasIndependientes() throws Exception { verificar("datos/plan_independiente.csv"); }
     private void verificar(String archivo) throws Exception {
         var plan = new CargadorCSV().cargar(Path.of(archivo));
         var resultado = new OrdenTopologicoDFS().ordenar(plan);
@@ -19,7 +18,7 @@ class OrdenTopologicoDFSTest {
         plan.prerrequisitos().forEach((materia, previas) -> previas.forEach(previa ->
                 assertTrue(resultado.orden().indexOf(previa) < resultado.orden().indexOf(materia))));
     }
-    @Test void detectaCicloDeTresMaterias() throws Exception {
+    void detectaCicloDeTresMaterias() throws Exception {
         var plan = new CargadorCSV().cargar(Path.of("datos/plan_con_ciclo.csv"));
         var resultado = new OrdenTopologicoDFS().ordenar(plan);
         assertFalse(resultado.valido());
