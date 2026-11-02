@@ -11,7 +11,7 @@ public final class CargadorCSV {
         var lineas = Files.readAllLines(archivo);
         if (lineas.isEmpty() || !lineas.getFirst().replace("\uFEFF", "").trim()
                 .equals("codigo,nombre,prerrequisitos")) {
-            throw new IllegalArgumentException("Encabezado CSV inválido");
+            throw new IllegalArgumentException("Encabezado CSV invalido");
         }
         Map<String, Materia> materias = new TreeMap<>();
         Map<String, Set<String>> requisitos = new TreeMap<>();
@@ -22,15 +22,15 @@ public final class CargadorCSV {
             String[] campos = linea.split(",", -1);
             if (campos.length != 3 || campos[0].isBlank() || campos[1].isBlank()
                     || linea.contains("\"")) {
-                throw new IllegalArgumentException("Formato inválido en línea " + (i + 1));
+                throw new IllegalArgumentException("Formato invalido en linea " + (i + 1));
             }
             String codigo = campos[0].trim();
             if (materias.putIfAbsent(codigo, new Materia(codigo, campos[1].trim())) != null)
-                throw new IllegalArgumentException("Código duplicado: " + codigo);
+                throw new IllegalArgumentException("Codigo duplicado: " + codigo);
             Set<String> previas = new TreeSet<>();
             if (!campos[2].isBlank()) {
                 for (String previa : campos[2].split(";", -1)) {
-                    if (previa.isBlank()) throw new IllegalArgumentException("Prerrequisito vacío en " + codigo);
+                    if (previa.isBlank()) throw new IllegalArgumentException("Prerrequisito vacio en " + codigo);
                     previas.add(previa.trim());
                 }
             }

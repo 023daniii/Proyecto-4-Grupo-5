@@ -1,7 +1,7 @@
 codigo,nombre,prerrequisitos
-MAT101,Matemática básica,
-PRO101,Programación inicial,
-MAT201,Matemática discreta,MAT101
+MAT101,Matematica basica,
+PRO101,Programacion inicial,
+MAT201,Matematica discreta,MAT101
 PRO201,Estructuras de datos,PRO101
 ALG301,Algoritmos,MAT201;PRO201
 PRO301,Proyecto integrador,ALG301

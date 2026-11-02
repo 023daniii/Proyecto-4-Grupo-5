@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.*;
 
-/** Entrada y menú de la aplicación de consola. */
+/** Entrada y menu de la aplicacion de consola. */
 public final class Main {
     private Main() { }
     public static void main(String[] args) {
@@ -17,14 +17,14 @@ public final class Main {
         PlanEstudios plan = null;
         while (true) {
             System.out.println("""
-                    Planificador académico — Grupo 5
+                    Planificador academico - Grupo 5
                     1. Cargar CSV
                     2. Comprobar DAG y detectar ciclos
                     3. Orden completo mediante Kahn
                     4. Orden completo mediante DFS
                     5. Consultar materias disponibles
                     0. Salir""");
-            System.out.print("Opción: ");
+            System.out.print("Opcion: ");
             if (!entrada.hasNextLine()) return;
             String opcion = entrada.nextLine().trim();
             if (opcion.equals("0")) {
@@ -43,23 +43,23 @@ public final class Main {
                         continue;
                     }
                     if (opcion.equals("5")) {
-                        System.out.print("Códigos aprobados separados por ; (vacío si ninguno): ");
+                        System.out.print("Codigos aprobados separados por ; (vacio si ninguno): ");
                         if (!entrada.hasNextLine()) return;
                         String texto = entrada.nextLine().trim();
                         Set<String> aprobadas = new HashSet<>();
                         if (!texto.isEmpty()) for (String codigo : texto.split(";", -1)) aprobadas.add(codigo.trim());
                         var materias = new ConsultaMaterias().disponibles(plan, aprobadas);
                         if (materias.isEmpty()) System.out.println("No hay materias disponibles.");
-                        materias.forEach(m -> System.out.println(m.codigo() + " — " + m.nombre()));
+                        materias.forEach(m -> System.out.println(m.codigo() + " - " + m.nombre()));
                     } else {
                         var resultado = opcion.equals("4") ? new OrdenTopologicoDFS().ordenar(plan)
                                 : new OrdenTopologicoKahn().ordenar(plan);
-                        if (!resultado.valido()) System.out.println("Plan inválido: dependencia circular "
-                                + String.join(" → ", resultado.ciclo()));
-                        else if (opcion.equals("2")) System.out.println("Plan válido: es un DAG.");
-                        else System.out.println("Orden válido: " + String.join(" → ", resultado.orden()));
+                        if (!resultado.valido()) System.out.println("Plan invalido: dependencia circular "
+                                + String.join(" -> ", resultado.ciclo()));
+                        else if (opcion.equals("2")) System.out.println("Plan valido: es un DAG.");
+                        else System.out.println("Orden valido: " + String.join(" -> ", resultado.orden()));
                     }
-                } else System.out.println("Opción inválida.");
+                } else System.out.println("Opcion invalida.");
             } catch (IOException | IllegalArgumentException e) {
                 System.out.println("Error: " + e.getMessage());
             }

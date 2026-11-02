@@ -2,8 +2,8 @@ package grupo5.algoritmos;
 
 import java.util.List;
 
-/** Resultado previsto: validez, códigos ordenados y códigos de un ciclo, si existe.
- * En un plan válido el ciclo estará vacío; en uno inválido el orden podrá ser parcial.
+/** Resultado previsto: validez, codigos ordenados y codigos de un ciclo, si existe.
+ * En un plan valido el ciclo estara vacio; en uno invalido el orden podra ser parcial.
  */
 public record ResultadoOrdenamiento(boolean valido, List<String> orden, List<String> ciclo) {
     public ResultadoOrdenamiento {

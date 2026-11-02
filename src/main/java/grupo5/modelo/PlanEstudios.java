@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/** Materias por código y relaciones por código. Arista: prerrequisito → dependiente.
+/** Materias por codigo y relaciones por codigo. Arista: prerrequisito -> dependiente.
  * El cargador CSV construye ambas relaciones de forma coherente.
  */
 public record PlanEstudios(Map<String, Materia> materias,
