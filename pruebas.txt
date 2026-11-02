@@ -1,5 +1,0 @@
-src/test/java/grupo5/CargadorCSVTest.java
-src/test/java/grupo5/ConsultaMateriasTest.java
-src/test/java/grupo5/OrdenTopologicoDFSTest.java
-src/test/java/grupo5/OrdenTopologicoKahnTest.java
-src/test/java/grupo5/Pruebas.java

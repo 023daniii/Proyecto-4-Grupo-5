@@ -1,8 +1,0 @@
-src/main/java/grupo5/Main.java
-src/main/java/grupo5/algoritmos/OrdenTopologicoDFS.java
-src/main/java/grupo5/algoritmos/OrdenTopologicoKahn.java
-src/main/java/grupo5/algoritmos/ResultadoOrdenamiento.java
-src/main/java/grupo5/io/CargadorCSV.java
-src/main/java/grupo5/modelo/Materia.java
-src/main/java/grupo5/modelo/PlanEstudios.java
-src/main/java/grupo5/servicio/ConsultaMaterias.java
