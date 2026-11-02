@@ -26,7 +26,7 @@ ALG201,Algoritmos,MAT101;PRO101
 
 Archivos UTF-8 con tres columnas separadas por comas; varios prerrequisitos se separan con `;`. Este formato sencillo no admite campos entre comillas ni comas internas. Se validan encabezado, campos obligatorios, codigos duplicados y referencias inexistentes. Un archivo con solo el encabezado representa un plan vacio. Las lineas vacias se ignoran.
 
-Por ahora se mantiene la orientacion **prerrequisito -> materia dependiente**, que produce directamente el orden de cursado. Kahn utiliza grados de entrada y DFS estados de visita. Si Kahn detecta un plan invalido, usa DFS para identificar un ciclo concreto. El orden puede variar entre ambos algoritmos y seguir siendo valido.
+Por ahora se mantiene la orientacion **del prerrequisito a la materia dependiente**, que produce directamente el orden de cursado. Kahn utiliza grados de entrada y DFS estados de visita. Si Kahn detecta un plan invalido, usa DFS para identificar un ciclo concreto. El orden puede variar entre ambos algoritmos y seguir siendo valido.
 
 ## Estructura
 

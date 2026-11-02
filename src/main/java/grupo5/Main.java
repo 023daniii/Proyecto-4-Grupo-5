@@ -55,9 +55,9 @@ public final class Main {
                         var resultado = opcion.equals("4") ? new OrdenTopologicoDFS().ordenar(plan)
                                 : new OrdenTopologicoKahn().ordenar(plan);
                         if (!resultado.valido()) System.out.println("Plan invalido: dependencia circular "
-                                + String.join(" -> ", resultado.ciclo()));
+                                + String.join(", ", resultado.ciclo()));
                         else if (opcion.equals("2")) System.out.println("Plan valido: es un DAG.");
-                        else System.out.println("Orden valido: " + String.join(" -> ", resultado.orden()));
+                        else System.out.println("Orden valido: " + String.join(", ", resultado.orden()));
                     }
                 } else System.out.println("Opcion invalida.");
             } catch (IOException | IllegalArgumentException e) {
