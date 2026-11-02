@@ -1,29 +1,28 @@
 package grupo5;
-
-import org.junit.jupiter.api.Disabled;
+import grupo5.io.CargadorCSV;
+import java.nio.file.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+import static org.junit.jupiter.api.Assertions.*;
 
-/** Casos previstos para la siguiente etapa. */
-@Disabled("Pendiente de implementación: lógica y aserciones de estos casos")
 class CargadorCSVTest {
-    @Test
-    void cargaPlanValido() {
-        throw new UnsupportedOperationException("Pendiente: cargaPlanValido");
+    @TempDir Path temporal;
+    @Test void cargaPlanValido() throws Exception {
+        var plan = new CargadorCSV().cargar(Path.of("datos/plan_valido.csv"));
+        assertEquals(6, plan.materias().size());
+        assertEquals(java.util.Set.of("MAT201", "PRO201"), plan.prerrequisitos().get("ALG301"));
+        assertTrue(plan.dependientes().get("MAT201").contains("ALG301"));
     }
-
-    @Test
-    void rechazaReferenciaInexistente() {
-        throw new UnsupportedOperationException("Pendiente: rechazaReferenciaInexistente");
+    @Test void rechazaReferenciaInexistente() throws Exception { invalido("A,Nombre,Z\n"); }
+    @Test void rechazaCodigoDuplicado() throws Exception { invalido("A,Uno,\nA,Dos,\n"); }
+    @Test void rechazaFormatoInvalido() throws Exception { invalido("A,Nombre\n"); }
+    @Test void rechazaPrerrequisitoVacio() throws Exception { invalido("A,Nombre,A;\n"); }
+    @Test void rechazaEncabezadoInvalido() throws Exception {
+        Path archivo = Files.writeString(temporal.resolve("mal.csv"), "otro,encabezado\n");
+        assertThrows(IllegalArgumentException.class, () -> new CargadorCSV().cargar(archivo));
     }
-
-    @Test
-    void rechazaCodigoDuplicado() {
-        throw new UnsupportedOperationException("Pendiente: rechazaCodigoDuplicado");
+    private void invalido(String filas) throws Exception {
+        Path archivo = Files.writeString(temporal.resolve("mal.csv"), "codigo,nombre,prerrequisitos\n" + filas);
+        assertThrows(IllegalArgumentException.class, () -> new CargadorCSV().cargar(archivo));
     }
-
-    @Test
-    void rechazaFormatoInvalido() {
-        throw new UnsupportedOperationException("Pendiente: rechazaFormatoInvalido");
-    }
-
 }

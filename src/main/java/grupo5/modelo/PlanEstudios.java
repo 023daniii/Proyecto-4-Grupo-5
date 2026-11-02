@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /** Materias por código y relaciones por código. Arista: prerrequisito → dependiente.
- * La carga y validación de coherencia se implementarán en una etapa posterior.
+ * El cargador CSV construye ambas relaciones de forma coherente.
  */
 public record PlanEstudios(Map<String, Materia> materias,
                            Map<String, Set<String>> prerrequisitos,
